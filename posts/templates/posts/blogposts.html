@@ -1,0 +1,16 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<h1>Blog Posts</h1>
+{%for post in posts%}
+<div class="posts">
+    <div class="date">
+        {{ post.date }}
+    </div>
+    <div class="post">
+        <h2><a href="{% url 'posts:detail' slug=post.slug %}">{{ post.title }}</a></h2>
+        <p>{{ post.snippet }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

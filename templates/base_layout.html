@@ -1,0 +1,36 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>POSTS</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav>
+           <ul>
+               {% if user.is_authenticated%}
+               <li>
+                   <form action="{% url 'accounts:logout'%}" class="logout-link" method="post">
+                       {%csrf_token%}
+                       <button type="submit">Logout</button>
+                   </form>
+               </li>
+               <li><a href="/posts/create" class="highlight">Post A Question</a></li>
+               {% else %}
+               <li><a href="/accounts/login">Login</a></li>
+               <li><a href="/accounts/signup">Signup</a></li>
+               {% endif %}
+           </ul>
+        </nav>
+        {% block content %}
+
+        {% endblock %}
+    </div> 
+</body>
+</html>
